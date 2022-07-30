@@ -1,9 +1,11 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export default function Navbar(props) {
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light">
+		<nav
+			className={`navbar navbar-expand-lg navbar-${props.mode.appearance} bg-${props.mode.appearance}`}
+		>
 			<a className="navbar-brand" href="/">
 				{props.title}
 			</a>
@@ -18,7 +20,6 @@ export default function Navbar(props) {
 			>
 				<span className="navbar-toggler-icon"></span>
 			</button>
-
 			<div className="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul className="navbar-nav mr-auto">
 					<li className="nav-item active">
@@ -32,33 +33,35 @@ export default function Navbar(props) {
 						</a>
 					</li>
 				</ul>
-				<form className="form-inline my-2 my-lg-0">
+				<div className="custom-control custom-switch">
 					<input
-						className="form-control mr-sm-2"
-						type="search"
-						placeholder="Search"
-						aria-label="Search"
+						type="checkbox"
+						className="custom-control-input"
+						id="customSwitch1"
+						style={{backgroundColor:props.mode.appearance === "dark"?"purple":"white"}}
 					/>
-					<button
-						className="btn btn-outline-success my-2 my-sm-0"
-						type="submit"
+					<label
+						className="custom-control-label"
+						htmlFor="customSwitch1"
+						onClick={props.toggleMode}
+						style = {{color: props.mode.appearance === "dark"?"white":"black"}}
 					>
-						Search
-					</button>
-				</form>
+						{props.mode.info}
+					</label>
+				</div>
 			</div>
 		</nav>
 	);
 }
 
 //only accept string in title and about
-Navbar.propTypes ={
-    title:PropTypes.string,
-    about:PropTypes.string
-}
+Navbar.propTypes = {
+	title: PropTypes.string,
+	about: PropTypes.string,
+};
 
 // sets default props if no props are sent
 Navbar.defaultProps = {
-    title : 'Set title here',
-    about: 'set about'
-}
+	title: "Set title here",
+	about: "set about",
+};

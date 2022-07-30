@@ -29,7 +29,10 @@ export default function Textform(props) {
 
 	return (
 		<>
-			<div className="container">
+			<div
+				className="container my-2"
+				style={{ color: props.mode.appearance === "dark" ? "white" : "black" }}
+			>
 				<div className="form-group">
 					<label htmlFor="myBox">
 						<h2>{props.heading}</h2>
@@ -40,6 +43,11 @@ export default function Textform(props) {
 						value={text}
 						id="myBox"
 						rows="8"
+						style={{
+							color: props.mode.appearance === "dark" ? "white" : "black",
+							backgroundColor:
+								props.mode.appearance === "dark" ? "grey" : "white",
+						}}
 					></textarea>
 				</div>
 				<button className="btn btn-primary mx-2" onClick={handleUpClick}>
@@ -58,14 +66,17 @@ export default function Textform(props) {
 					Reset text area
 				</button>
 			</div>
-			<div className="container my-4">
-				<h2>Your text summart</h2>
+			<div
+				className="container my-4"
+				style={{ color: props.mode.appearance === "dark" ? "white" : "black" }}
+			>
+				<h2>Your text summary</h2>
 				<p>
 					{text.split(" ").length} words and {text.length} characters
 				</p>
 				<p>{0.008 * text.split(" ").length} Minutes to read</p>
 				<h2>Preview</h2>
-				<p>{text}</p>
+				<p>{text.length>0 ? text : "Enter in textarea to preview"}</p>
 			</div>
 		</>
 	);
