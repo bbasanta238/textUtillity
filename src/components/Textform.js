@@ -8,10 +8,12 @@ export default function Textform(props) {
 		// setText("clicked on upclick");
 		let newText = text.toUpperCase();
 		setText(newText);
+		props.showAlert("Converted to Uppercase", "success ");
 	};
 	const handleLowClick = () => {
 		let newText = text.toLowerCase();
 		setText(newText);
+		props.showAlert("Converted to Lowercase", "success ");
 	};
 	const handleResetClick = () => {
 		setText("");
@@ -20,6 +22,7 @@ export default function Textform(props) {
 	const handleReverse = () => {
 		let reverseText = text.split("").reverse().join("");
 		setText(reverseText);
+		props.showAlert("Text is reversed", "success ");
 	};
 
 	// required to make write on input on change
@@ -76,7 +79,7 @@ export default function Textform(props) {
 				</p>
 				<p>{0.008 * text.split(" ").length} Minutes to read</p>
 				<h2>Preview</h2>
-				<p>{text.length>0 ? text : "Enter in textarea to preview"}</p>
+				<p>{text.length > 0 ? text : "Enter in textarea to preview"}</p>
 			</div>
 		</>
 	);
